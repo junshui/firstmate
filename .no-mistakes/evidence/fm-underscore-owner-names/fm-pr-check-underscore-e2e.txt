@@ -1,0 +1,13 @@
+End-to-end scenarios driven through the real bin/fm-pr-check.sh (target commit f0a279e),
+using the security test's own gh/glab fixtures and an isolated FM_HOME:
+
+Scenario: underscore-owner PR is recorded and arms the merge poll
+  $ run_check_entry ... task-a https://github.com/Owner_name/repo/pull/9   (isDraft=false)
+  RECORDED: pr=https://github.com/Owner_name/repo/pull/9
+  ARMED POLL: task-a.check.sh present
+  ok - fm-pr-check records pr= and arms the merge poll for an underscore-owner PR URL
+
+Scenario (adversarial): trailing-underscore owner is refused end-to-end
+  $ run_check_entry ... task-a https://github.com/owner_/repo/pull/9       (isDraft=false)
+  REFUSED trailing-underscore owner (rc=2); no pr= recorded, no poll armed
+  ok - fm-pr-check refuses a trailing-underscore owner end-to-end

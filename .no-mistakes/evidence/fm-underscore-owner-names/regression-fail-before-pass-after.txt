@@ -1,0 +1,11 @@
+Regression proof for tests/fm-pr-check-security.test.sh :: test_parser_matrix
+
+Against the FIXED library (target commit f0a279e):
+  ok - raw-byte parser accepts canonical URLs and rejects the complete adversarial matrix
+
+Against the PRE-FIX library (base commit eb77f02, same test file):
+  not ok - parser rejected canonical URL     (exit 1)
+    -> the new accept-matrix row https://github.com/Owner_name/repo/pull/7 is rejected
+
+The test fails before the fix and passes after it, and the same run keeps
+_owner / owner_ in the rejected matrix.

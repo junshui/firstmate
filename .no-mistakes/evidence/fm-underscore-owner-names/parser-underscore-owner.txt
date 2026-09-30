@@ -1,0 +1,19 @@
+=== fm_pr_url_parse driven against the real bin/fm-pr-lib.sh (target commit f0a279e) ===
+
+-- ACCEPT: underscore-bearing owners --
+ACCEPT https://github.com/Owner_name/repo/pull/7 -> owner=Owner_name repo=repo num=7
+ACCEPT https://github.com/a_b/repo/pull/1 -> owner=a_b repo=repo num=1
+
+-- REJECT: boundary underscore/separator (guards intact) --
+REJECT https://github.com/_owner/r/pull/1
+REJECT https://github.com/owner_/r/pull/1
+REJECT https://github.com/-owner/r/pull/1
+REJECT https://github.com/owner-/r/pull/1
+REJECT https://github.com/owner--name/r/pull/1
+
+-- 39/40 char length bound unchanged --
+39-char ACCEPT
+40-char REJECT
+
+=== Regression: BASE commit eb77f02 rejected the same underscore URL ===
+REJECT https://github.com/Owner_name/repo/pull/7 (pre-fix)
