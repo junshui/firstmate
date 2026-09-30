@@ -1,0 +1,50 @@
+
+[31m ▐[40m▛███▛█[39m[49m   [1mClaude Code[0m[39m[49m [37mv2.1.285[39m
+[31m▝▜[40m█████[49m█▀[39m  [37mOpus 4.8 · Amazon Bedrock[39m
+[31m ▝▝   ▝▝ [39m  [37m~/.no-mistakes/worktrees/ddc2d33f9b1e/01M3RWVS85AQ95JDPQCJF4TXPQ[39m
+
+[93m⚠[39m [1m[93mAGENTS.md[0m[93m[49m is over the 40.0k-char limit (48.0k chars)[37m · /memory to free up context[39m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[37m───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── fm-lab-probe ─
+[39m❯ this is a long typed draft that should wrap onto a continuation row to prove pending extraction across the composer[7m [0m[39m[49m
+[37m────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[39m  [93m⏵⏵ auto mode on[37m (shift+tab to cycle)[39m
