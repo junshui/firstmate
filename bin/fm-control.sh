@@ -1027,7 +1027,7 @@ record_note() {
 }
 
 do_relaunch() {
-  local exit_result state note_line
+  local exit_result exit_detail state note_line
   local -a spawn_args
 
   require_state_verified_backend relaunch
@@ -1108,7 +1108,13 @@ do_relaunch() {
 
   journal_write complete "${CHECKPOINT_LINES[@]}" "$note_line" "exit_result=$exit_result"
   RELAUNCH_ACTIVE=0
-  echo "relaunched $ID harness=$TARGET_HARNESS from=$PRIOR_RECORDED_HARNESS model=$TARGET_MODEL effort=$TARGET_EFFORT backend=$BACKEND endpoint=$T worktree=$WT"
+  # When the old agent was stopped through the key-only path, its exit_result
+  # carries the same `exit=keys composer=unknown draft=discarded-if-any` notice
+  # `exit` prints directly, so surface it here too rather than hiding a possibly
+  # discarded draft from an operator reading only the relaunch result.
+  exit_detail=
+  [ "${exit_result%% *}" = "$exit_result" ] || exit_detail=" ${exit_result#* }"
+  echo "relaunched $ID harness=$TARGET_HARNESS from=$PRIOR_RECORDED_HARNESS model=$TARGET_MODEL effort=$TARGET_EFFORT backend=$BACKEND endpoint=$T worktree=$WT$exit_detail"
 }
 
 # --- verbs ------------------------------------------------------------------

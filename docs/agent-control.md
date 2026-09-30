@@ -51,7 +51,8 @@ The clear is refused before anything is sent when the recorded backend cannot de
 
 `exit` reads the composer's state before typing the exit command and requires the exact `empty` verdict; a `pending` verdict refuses by naming the pending text, and any other verdict (`unknown`, `pending-unproven`, or an unreadable read) refuses as not proven empty, matching the fail-safe contract every other consumer that can overwrite composer input follows.
 The one exception is an `unknown` or unreadable composer on an adapter with a verified key-only exit - today only claude, whose first Ctrl+C clears the composer and whose second exits - when the agent's busy state reads positively idle both before and after a verified interrupt: the plane then types no text, sends only those exit keys, and reports `exit=keys composer=unknown draft=discarded-if-any` so a possibly discarded draft is never hidden.
-Every other case refuses before any key is sent, including a `pending` or `pending-unproven` verdict, a busy or unrecorded busy state, and an adapter without a key-only exit.
+Every other case refuses the exit keys and types no text: a `pending` or `pending-unproven` verdict, an unrecorded busy state, and an adapter without a key-only exit all refuse before any key is sent at all.
+A recorded-busy agent is the one qualification: `exit` interrupts a busy agent before it ever reads the composer, so such an agent may already have received the ordinary pre-exit interrupt (Escape) when the refusal lands - the refusal still prevents the exit keys, never types text, and leaves the agent running.
 [`bin/fm-control-lib.sh`](../bin/fm-control-lib.sh) owns the key-only exit table.
 
 **Teardown and discard are not verbs and will not become verbs.**
